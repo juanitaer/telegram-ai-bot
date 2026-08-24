@@ -1,0 +1,10 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const { loadConfig } = require('../src/config/env');
+const { validateUpdate, getMessageText, MAX_TEXT_LENGTH } = require('../src/utils/validation');
+test('accepts a valid Telegram update', () => assert.equal(validateUpdate({ update_id: 1, message: {} }), true));
+test('rejects an invalid Telegram update', () => assert.equal(validateUpdate({ message: {} }), false));
+test('rejects an unsupported Telegram update', () => assert.equal(validateUpdate({ update_id: 1, edited_channel_post: {} }), false));
+test('rejects empty text', () => assert.throws(() => getMessageText({ message: { text: ' ' } }), /EMPTY_TEXT/));
+test('rejects excessively long text', () => assert.throws(() => getMessageText({ message: { text: 'a'.repeat(MAX_TEXT_LENGTH + 1) } }), /TEXT_TOO_LONG/));
+test('reports only the missing configuration name', () => assert.throws(() => loadConfig({}, { loadDotenv: false }), /^Error: Missing required environment variable: TELEGRAM_BOT_TOKEN$/));
