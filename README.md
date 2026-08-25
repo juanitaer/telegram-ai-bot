@@ -2,7 +2,7 @@
 
 A secure webhook-based Telegram bot that combines conversational AI, weather data and text-to-speech using Node.js and Express.
 
-> **Security notice:** an OpenWeather credential previously appeared in this private repository's Git history. It must be rotated manually before deployment. The historical value is not used or reproduced by the current code.
+> **Security notice:** credentials must be provided through environment variables and any previously exposed credential must be rotated before deployment. No credential value is included in this repository.
 
 ## Features
 
@@ -59,7 +59,7 @@ npm test
 npm audit
 ```
 
-Tests use Node's built-in test runner and make no real requests to Telegram, OpenAI, OpenWeather or Google TTS.
+Tests use Node's built-in test runner and make no real requests to Telegram, OpenAI, OpenWeather or Google Translate TTS.
 
 ## HTTP endpoints
 
@@ -74,8 +74,8 @@ Tests use Node's built-in test runner and make no real requests to Telegram, Ope
 - Provider errors are converted into safe user-facing messages.
 - Secrets are loaded exclusively from environment variables.
 
-This private repository retains its original Git history. A future public version should be exported into a new repository with a clean history after the historical OpenWeather credential has been rotated.
+This repository was created from a sanitized source tree with a new Git history. It does not include credentials, private conversations or the history of its private source repository.
 
 ## Status
 
-Refactored and tested as the private source for a future clean public repository named `telegram-ai-bot`.
+Public reference implementation. The repository documents local setup and webhook requirements but does not claim an active production deployment.
